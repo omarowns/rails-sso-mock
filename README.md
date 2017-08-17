@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Ruby version
+`2.3.1`
 
-* Ruby version
+## Rails version
+`5.1.3`
 
-* System dependencies
+## Pre-setup
+Database username is `onedocwaysaml` with password `saml`. So make sure to create that via PSQL.
+```sql
+CREATE ROLE onedocwaysaml WITH createdb login PASSWORD 'saml';
+```
 
-* Configuration
+## Setup
+```bash
+$ rake db:create
+$ rake db:schema:load
+$ rake db:seed
+```
 
-* Database creation
+## Credentials
+Administrator:
+  - admin@fake.com
+  - Please11
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Extra
+To create a new Identity Provider go to `/identity_providers`
+Logout via SLO still not implemented until we figure out the login correctly.
