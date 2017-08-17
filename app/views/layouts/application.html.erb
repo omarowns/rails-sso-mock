@@ -9,6 +9,15 @@
   </head>
 
   <body>
+    <header>
+      <%= render 'devise/menu/current_user' %>
+    </header>
     <%= yield %>
+    <footer>
+      <ul class="hmenu">
+        <%= render 'devise/menu/registration_items' %>
+        <%= render 'devise/menu/login_items' %>
+      </ul>
+    </footer>
   </body>
 </html>

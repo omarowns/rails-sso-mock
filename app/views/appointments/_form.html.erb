@@ -1,0 +1,48 @@
+<%= form_with(model: appointment, local: true) do |form| %>
+  <% if appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%- if current_user.patient? %>
+      <%= form.label :patient_id %>
+      <%= form.number_field :patient_id, id: :appointment_patient_id, value: current_user.id, disabled: true %>
+    <% else %>
+      <%= form.label :patient_id %>
+      <%= select 'appointment', 'patient_id', @patients.collect {|p| [ p.full_name, p.id ] } %>
+    <% end -%>
+  </div>
+
+  <div class="field">
+    <%- if current_user.doctor? %>
+      <%= form.label :doctor_id %>
+      <%= form.number_field :doctor_id, id: :appointment_doctor_id, value: current_user.id, hidden: true %>
+      <%= current_user.full_name %>
+    <% else %>
+      <%= form.label :patient_id %>
+      <%= select 'appointment', 'doctor_id', @doctors.collect {|p| [ p.full_name, p.id ] } %>
+    <% end -%>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date, id: :appointment_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date, id: :appointment_end_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
