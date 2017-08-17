@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :identity_providers
   root 'appointments#index'
   devise_for :users
   resources :appointments

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  idp_entity_id: MyString
+  idp_sso_target_url: MyString
+  idp_slo_target_url: MyString
+  idp_cert: MyText
+  idp_cert_fingerprint: MyString
+  idp_cert_fingerprint_algorithm: MyString
+
+two:
+  name: MyString
+  idp_entity_id: MyString
+  idp_sso_target_url: MyString
+  idp_slo_target_url: MyString
+  idp_cert: MyText
+  idp_cert_fingerprint: MyString
+  idp_cert_fingerprint_algorithm: MyString

@@ -4,7 +4,8 @@ class SamlController < ApplicationController
   def init
     settings = Account.get_settings(base_url)
     if settings.nil?
-      render :action => :no_settings
+      flash[:error] = 'No Settings to loging via SSO'
+      redirect_to root_url
       return
     end
 
@@ -23,11 +24,13 @@ class SamlController < ApplicationController
       logger.info "Sucessfully logged"
       logger.info "NAMEID: #{response.nameid}"
       logger.info "ATTRIBUTES: #{response.attributes}"
-      render :action => :index
+      flash[:success] = 'Successfully logged in via SSO'
+      redirect_to root_url
     else
       logger.info "Response Invalid. Errors: #{response.errors}"
       @errors = response.errors
-      render :action => :fail
+      flash[:error] = 'Response Invalid. Could not log in via SSO.'
+      redirect_to root_url
     end
   end
 
@@ -55,7 +58,7 @@ class SamlController < ApplicationController
 
   private
   def base_url
-    "#{request.protocol}://#{request.host_with_port}"
+    "#{request.protocol}#{request.host_with_port}"
   end
 
   # Create an SP initiated SLO

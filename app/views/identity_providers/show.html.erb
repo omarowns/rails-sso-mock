@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @identity_provider.name %>
+</p>
+
+<p>
+  <strong>Requestor:</strong>
+  <%= @identity_provider.requestor %>
+</p>
+
+<p>
+  <strong>Idp entity:</strong>
+  <%= @identity_provider.idp_entity_id %>
+</p>
+
+<p>
+  <strong>Idp sso target url:</strong>
+  <%= @identity_provider.idp_sso_target_url %>
+</p>
+
+<p>
+  <strong>Idp slo target url:</strong>
+  <%= @identity_provider.idp_slo_target_url %>
+</p>
+
+<p>
+  <strong>Idp cert:</strong>
+  <%= @identity_provider.idp_cert %>
+</p>
+
+<p>
+  <strong>Idp cert fingerprint:</strong>
+  <%= @identity_provider.idp_cert_fingerprint %>
+</p>
+
+<p>
+  <strong>Idp cert fingerprint algorithm:</strong>
+  <%= @identity_provider.idp_cert_fingerprint_algorithm %>
+</p>
+
+<%= link_to 'Edit', edit_identity_provider_path(@identity_provider) %> |
+<%= link_to 'Back', identity_providers_path %>

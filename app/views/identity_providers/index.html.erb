@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Identity Providers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Idp entity</th>
+      <th>Idp sso target url</th>
+      <th>Idp slo target url</th>
+      <th>Idp cert</th>
+      <th>Idp cert fingerprint</th>
+      <th>Idp cert fingerprint algorithm</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @identity_providers.each do |identity_provider| %>
+      <tr>
+        <td><%= identity_provider.name %></td>
+        <td><%= identity_provider.idp_entity_id %></td>
+        <td><%= identity_provider.idp_sso_target_url %></td>
+        <td><%= identity_provider.idp_slo_target_url %></td>
+        <td><%= identity_provider.idp_cert %></td>
+        <td><%= identity_provider.idp_cert_fingerprint %></td>
+        <td><%= identity_provider.idp_cert_fingerprint_algorithm %></td>
+        <td><%= link_to 'Show', identity_provider %></td>
+        <td><%= link_to 'Edit', edit_identity_provider_path(identity_provider) %></td>
+        <td><%= link_to 'Destroy', identity_provider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Identity Provider', new_identity_provider_path %>

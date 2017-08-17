@@ -1,0 +1,57 @@
+<%= form_with(model: identity_provider, local: true) do |form| %>
+  <% if identity_provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(identity_provider.errors.count, "error") %> prohibited this identity_provider from being saved:</h2>
+
+      <ul>
+      <% identity_provider.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :identity_provider_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requestor %>
+    <%= form.text_field :requestor, id: :identity_provider_requestor %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'IDP ENTITY ID' %>
+    <%= form.text_field :idp_entity_id, id: :identity_provider_idp_entity_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'IDP SSO TARGET URL' %>
+    <%= form.text_field :idp_sso_target_url, id: :identity_provider_idp_sso_target_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'IDP SLO TARGET URL' %>
+    <%= form.text_field :idp_slo_target_url, id: :identity_provider_idp_slo_target_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'IDP CERT' %>
+    <%= form.text_area :idp_cert, id: :identity_provider_idp_cert %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'IDP CERT FINGERPRINT' %>
+    <%= form.text_field :idp_cert_fingerprint, id: :identity_provider_idp_cert_fingerprint %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'IDP CERT FINGERPRINT ALGORITH' %>
+    <%= form.text_field :idp_cert_fingerprint_algorithm, id: :identity_provider_idp_cert_fingerprint_algorithm %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

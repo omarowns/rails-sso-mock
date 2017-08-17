@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817212117) do
+ActiveRecord::Schema.define(version: 20170817230628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20170817212117) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "identity_providers", force: :cascade do |t|
+    t.string "name"
+    t.string "idp_entity_id"
+    t.string "idp_sso_target_url"
+    t.string "idp_slo_target_url"
+    t.text "idp_cert"
+    t.string "idp_cert_fingerprint"
+    t.string "idp_cert_fingerprint_algorithm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "requestor"
   end
 
   create_table "users", force: :cascade do |t|
