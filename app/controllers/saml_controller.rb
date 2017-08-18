@@ -18,17 +18,17 @@ class SamlController < ApplicationController
     response = OneLogin::RubySaml::Response.new(params[:SAMLResponse], :settings => settings)
 
     if response.is_valid?
-      session[:nameid] = response.nameid
-      session[:attributes] = response.attributes
-      @attrs = session[:attributes]
-      logger.info "Sucessfully logged"
       logger.info "NAMEID: #{response.nameid}"
       logger.info "ATTRIBUTES: #{response.attributes}"
-      flash[:success] = 'Successfully logged in via SSO'
-      redirect_to root_url
+      if sso_user(response)
+        flash[:success] = 'Successfully logged in via SSO'
+        sign_in(sso_user)
+      else
+        flash[:error] = "User doesn't exist."
+        redirect_to root_url
+      end
     else
       logger.info "Response Invalid. Errors: #{response.errors}"
-      @errors = response.errors
       flash[:error] = 'Response Invalid. Could not log in via SSO.'
       redirect_to root_url
     end
@@ -57,6 +57,10 @@ class SamlController < ApplicationController
   end
 
   private
+  def sso_user(response = nil)
+    @sso_user ||= User.find_by_email(response.nameid)
+  end
+
   def base_url
     "#{request.protocol}#{request.host_with_port}"
   end
