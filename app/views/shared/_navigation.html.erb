@@ -1,0 +1,6 @@
+<%- if current_user %>
+  <%= link_to('Appointments', appointments_path) %>
+  <%- if current_user.admin? %>
+    <%= link_to('Identity Providers', identity_providers_path) %>
+  <% end -%>
+<% end -%>
